@@ -60,6 +60,9 @@ namespace Flightmodel {
 	private: System::Windows::Forms::RadioButton^ radioButton2;
 	private: System::Windows::Forms::RadioButton^ radioButton1;
 	private: System::Windows::Forms::Label^ Accurasy;
+	private: System::Windows::Forms::Timer^ timer1;
+
+	private: System::ComponentModel::IContainer^ components;
 
 
 
@@ -67,7 +70,7 @@ namespace Flightmodel {
 		/// <summary>
 		/// Обязательная переменная конструктора.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -76,8 +79,10 @@ namespace Flightmodel {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			System::Windows::Forms::DataVisualization::Charting::ChartArea^ chartArea1 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
-			System::Windows::Forms::DataVisualization::Charting::Series^ series1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
+			this->components = (gcnew System::ComponentModel::Container());
+			System::Windows::Forms::DataVisualization::Charting::ChartArea^ chartArea2 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
+			System::Windows::Forms::DataVisualization::Charting::Series^ series3 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
+			System::Windows::Forms::DataVisualization::Charting::Series^ series4 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
 			this->radioButton5 = (gcnew System::Windows::Forms::RadioButton());
 			this->radioButton4 = (gcnew System::Windows::Forms::RadioButton());
@@ -98,6 +103,7 @@ namespace Flightmodel {
 			this->Angle = (gcnew System::Windows::Forms::Label());
 			this->Height = (gcnew System::Windows::Forms::Label());
 			this->chart1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Chart());
+			this->timer1 = (gcnew System::Windows::Forms::Timer(this->components));
 			this->panel1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numWeight))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numSize))->BeginInit();
@@ -137,10 +143,10 @@ namespace Flightmodel {
 			this->radioButton5->AutoSize = true;
 			this->radioButton5->Location = System::Drawing::Point(333, 177);
 			this->radioButton5->Name = L"radioButton5";
-			this->radioButton5->Size = System::Drawing::Size(73, 20);
+			this->radioButton5->Size = System::Drawing::Size(59, 20);
 			this->radioButton5->TabIndex = 17;
 			this->radioButton5->TabStop = true;
-			this->radioButton5->Text = L"0.00001";
+			this->radioButton5->Text = L"0.001";
 			this->radioButton5->UseVisualStyleBackColor = true;
 			this->radioButton5->CheckedChanged += gcnew System::EventHandler(this, &MyForm::radioButton5_CheckedChanged);
 			// 
@@ -149,10 +155,10 @@ namespace Flightmodel {
 			this->radioButton4->AutoSize = true;
 			this->radioButton4->Location = System::Drawing::Point(261, 177);
 			this->radioButton4->Name = L"radioButton4";
-			this->radioButton4->Size = System::Drawing::Size(66, 20);
+			this->radioButton4->Size = System::Drawing::Size(52, 20);
 			this->radioButton4->TabIndex = 16;
 			this->radioButton4->TabStop = true;
-			this->radioButton4->Text = L"0.0001";
+			this->radioButton4->Text = L"0.01";
 			this->radioButton4->UseVisualStyleBackColor = true;
 			this->radioButton4->CheckedChanged += gcnew System::EventHandler(this, &MyForm::radioButton4_CheckedChanged);
 			// 
@@ -161,10 +167,10 @@ namespace Flightmodel {
 			this->radioButton3->AutoSize = true;
 			this->radioButton3->Location = System::Drawing::Point(196, 177);
 			this->radioButton3->Name = L"radioButton3";
-			this->radioButton3->Size = System::Drawing::Size(59, 20);
+			this->radioButton3->Size = System::Drawing::Size(45, 20);
 			this->radioButton3->TabIndex = 15;
 			this->radioButton3->TabStop = true;
-			this->radioButton3->Text = L"0.001";
+			this->radioButton3->Text = L"0.1";
 			this->radioButton3->UseVisualStyleBackColor = true;
 			this->radioButton3->CheckedChanged += gcnew System::EventHandler(this, &MyForm::radioButton3_CheckedChanged);
 			// 
@@ -173,10 +179,10 @@ namespace Flightmodel {
 			this->radioButton2->AutoSize = true;
 			this->radioButton2->Location = System::Drawing::Point(138, 177);
 			this->radioButton2->Name = L"radioButton2";
-			this->radioButton2->Size = System::Drawing::Size(52, 20);
+			this->radioButton2->Size = System::Drawing::Size(45, 20);
 			this->radioButton2->TabIndex = 14;
 			this->radioButton2->TabStop = true;
-			this->radioButton2->Text = L"0.01";
+			this->radioButton2->Text = L"0.2";
 			this->radioButton2->UseVisualStyleBackColor = true;
 			this->radioButton2->CheckedChanged += gcnew System::EventHandler(this, &MyForm::radioButton2_CheckedChanged);
 			// 
@@ -188,7 +194,7 @@ namespace Flightmodel {
 			this->radioButton1->Size = System::Drawing::Size(45, 20);
 			this->radioButton1->TabIndex = 13;
 			this->radioButton1->TabStop = true;
-			this->radioButton1->Text = L"0.1";
+			this->radioButton1->Text = L"0.5";
 			this->radioButton1->UseVisualStyleBackColor = true;
 			this->radioButton1->CheckedChanged += gcnew System::EventHandler(this, &MyForm::radioButton1_CheckedChanged);
 			// 
@@ -203,7 +209,7 @@ namespace Flightmodel {
 			// 
 			// btClear
 			// 
-			this->btClear->Location = System::Drawing::Point(228, 102);
+			this->btClear->Location = System::Drawing::Point(228, 105);
 			this->btClear->Name = L"btClear";
 			this->btClear->Size = System::Drawing::Size(138, 54);
 			this->btClear->TabIndex = 11;
@@ -258,12 +264,10 @@ namespace Flightmodel {
 			// numHeight
 			// 
 			this->numHeight->DecimalPlaces = 1;
-			this->numHeight->Increment = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1, 0, 0, 65536 });
 			this->numHeight->Location = System::Drawing::Point(70, 15);
 			this->numHeight->Name = L"numHeight";
 			this->numHeight->Size = System::Drawing::Size(120, 22);
 			this->numHeight->TabIndex = 5;
-			this->numHeight->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1, 0, 0, 65536 });
 			// 
 			// Weight
 			// 
@@ -312,20 +316,35 @@ namespace Flightmodel {
 			// 
 			// chart1
 			// 
-			chartArea1->Name = L"ChartArea1";
-			this->chart1->ChartAreas->Add(chartArea1);
+			chartArea2->AxisX->Maximum = 20;
+			chartArea2->AxisX->Minimum = 0;
+			chartArea2->AxisY->Maximum = 10;
+			chartArea2->AxisY->Minimum = 0;
+			chartArea2->Name = L"ChartArea1";
+			this->chart1->ChartAreas->Add(chartArea2);
 			this->chart1->Location = System::Drawing::Point(12, 244);
 			this->chart1->Name = L"chart1";
-			series1->BorderColor = System::Drawing::Color::Red;
-			series1->BorderWidth = 3;
-			series1->ChartArea = L"ChartArea1";
-			series1->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::FastLine;
-			series1->Color = System::Drawing::Color::Red;
-			series1->Name = L"Series1";
-			this->chart1->Series->Add(series1);
+			series3->BorderColor = System::Drawing::Color::Red;
+			series3->BorderWidth = 3;
+			series3->ChartArea = L"ChartArea1";
+			series3->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::FastLine;
+			series3->Color = System::Drawing::Color::Red;
+			series3->Name = L"Series1";
+			series4->ChartArea = L"ChartArea1";
+			series4->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::FastLine;
+			series4->Color = System::Drawing::Color::Cyan;
+			series4->IsVisibleInLegend = false;
+			series4->Name = L"Series2";
+			this->chart1->Series->Add(series3);
+			this->chart1->Series->Add(series4);
 			this->chart1->Size = System::Drawing::Size(1517, 680);
 			this->chart1->TabIndex = 1;
 			this->chart1->Text = L"chart1";
+			// 
+			// timer1
+			// 
+			this->timer1->Interval = 1;
+			this->timer1->Tick += gcnew System::EventHandler(this, &MyForm::timer1_Tick);
 			// 
 			// MyForm
 			// 
@@ -336,6 +355,7 @@ namespace Flightmodel {
 			this->Controls->Add(this->panel1);
 			this->Name = L"MyForm";
 			this->Text = L"MyForm";
+			this->WindowState = System::Windows::Forms::FormWindowState::Maximized;
 			this->panel1->ResumeLayout(false);
 			this->panel1->PerformLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numWeight))->EndInit();
@@ -350,6 +370,9 @@ namespace Flightmodel {
 #pragma endregion
 private: double a, v, S, m, vx, vy, cosa, sina, beta, k, x, y, root;
 private: double dt = 0;
+	   const double rho = 1.29;
+	   const double C = 0.15;
+	   const double g = 9.81;
 
 private: System::Void btStart_Click(System::Object^ sender, System::EventArgs^ e);
 private: System::Void radioButton1_CheckedChanged(System::Object^ sender, System::EventArgs^ e);
@@ -358,5 +381,6 @@ private: System::Void radioButton3_CheckedChanged(System::Object^ sender, System
 private: System::Void radioButton4_CheckedChanged(System::Object^ sender, System::EventArgs^ e);
 private: System::Void radioButton5_CheckedChanged(System::Object^ sender, System::EventArgs^ e);
 private: System::Void btClear_Click(System::Object^ sender, System::EventArgs^ e);
+private: System::Void timer1_Tick(System::Object^ sender, System::EventArgs^ e);
 };
 }
