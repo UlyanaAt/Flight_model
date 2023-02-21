@@ -61,6 +61,25 @@ namespace Flightmodel {
 	private: System::Windows::Forms::RadioButton^ radioButton1;
 	private: System::Windows::Forms::Label^ Accurasy;
 	private: System::Windows::Forms::Timer^ timer1;
+	private: System::Windows::Forms::Panel^ panel2;
+	private: System::Windows::Forms::Label^ ES_label;
+
+	private: System::Windows::Forms::Label^ MH_label;
+
+	private: System::Windows::Forms::Label^ D_label;
+
+	private: System::Windows::Forms::Label^ TS_label;
+	private: System::Windows::Forms::Label^ ES_value;
+	private: System::Windows::Forms::Label^ MH_value;
+	private: System::Windows::Forms::Label^ D_value;
+	private: System::Windows::Forms::Label^ TS_value;
+
+
+
+
+
+
+
 
 	private: System::ComponentModel::IContainer^ components;
 
@@ -80,10 +99,21 @@ namespace Flightmodel {
 		void InitializeComponent(void)
 		{
 			this->components = (gcnew System::ComponentModel::Container());
-			System::Windows::Forms::DataVisualization::Charting::ChartArea^ chartArea2 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
+			System::Windows::Forms::DataVisualization::Charting::ChartArea^ chartArea1 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
+			System::Windows::Forms::DataVisualization::Charting::Series^ series1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
+			System::Windows::Forms::DataVisualization::Charting::Series^ series2 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
 			System::Windows::Forms::DataVisualization::Charting::Series^ series3 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
 			System::Windows::Forms::DataVisualization::Charting::Series^ series4 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
+			System::Windows::Forms::DataVisualization::Charting::Series^ series5 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
+			this->ES_value = (gcnew System::Windows::Forms::Label());
+			this->MH_value = (gcnew System::Windows::Forms::Label());
+			this->D_value = (gcnew System::Windows::Forms::Label());
+			this->TS_value = (gcnew System::Windows::Forms::Label());
+			this->ES_label = (gcnew System::Windows::Forms::Label());
+			this->MH_label = (gcnew System::Windows::Forms::Label());
+			this->D_label = (gcnew System::Windows::Forms::Label());
+			this->TS_label = (gcnew System::Windows::Forms::Label());
 			this->radioButton5 = (gcnew System::Windows::Forms::RadioButton());
 			this->radioButton4 = (gcnew System::Windows::Forms::RadioButton());
 			this->radioButton3 = (gcnew System::Windows::Forms::RadioButton());
@@ -104,6 +134,7 @@ namespace Flightmodel {
 			this->Height = (gcnew System::Windows::Forms::Label());
 			this->chart1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Chart());
 			this->timer1 = (gcnew System::Windows::Forms::Timer(this->components));
+			this->panel2 = (gcnew System::Windows::Forms::Panel());
 			this->panel1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numWeight))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numSize))->BeginInit();
@@ -115,6 +146,14 @@ namespace Flightmodel {
 			// 
 			// panel1
 			// 
+			this->panel1->Controls->Add(this->ES_value);
+			this->panel1->Controls->Add(this->MH_value);
+			this->panel1->Controls->Add(this->D_value);
+			this->panel1->Controls->Add(this->TS_value);
+			this->panel1->Controls->Add(this->ES_label);
+			this->panel1->Controls->Add(this->MH_label);
+			this->panel1->Controls->Add(this->D_label);
+			this->panel1->Controls->Add(this->TS_label);
 			this->panel1->Controls->Add(this->radioButton5);
 			this->panel1->Controls->Add(this->radioButton4);
 			this->panel1->Controls->Add(this->radioButton3);
@@ -137,6 +176,79 @@ namespace Flightmodel {
 			this->panel1->Name = L"panel1";
 			this->panel1->Size = System::Drawing::Size(857, 226);
 			this->panel1->TabIndex = 0;
+			// 
+			// ES_value
+			// 
+			this->ES_value->AutoSize = true;
+			this->ES_value->Location = System::Drawing::Point(590, 140);
+			this->ES_value->Name = L"ES_value";
+			this->ES_value->Size = System::Drawing::Size(14, 16);
+			this->ES_value->TabIndex = 25;
+			this->ES_value->Text = L"0";
+			// 
+			// MH_value
+			// 
+			this->MH_value->AutoSize = true;
+			this->MH_value->Location = System::Drawing::Point(590, 105);
+			this->MH_value->Name = L"MH_value";
+			this->MH_value->Size = System::Drawing::Size(14, 16);
+			this->MH_value->TabIndex = 24;
+			this->MH_value->Text = L"0";
+			// 
+			// D_value
+			// 
+			this->D_value->AutoSize = true;
+			this->D_value->Location = System::Drawing::Point(590, 51);
+			this->D_value->Name = L"D_value";
+			this->D_value->Size = System::Drawing::Size(14, 16);
+			this->D_value->TabIndex = 23;
+			this->D_value->Text = L"0";
+			// 
+			// TS_value
+			// 
+			this->TS_value->AutoSize = true;
+			this->TS_value->Location = System::Drawing::Point(590, 17);
+			this->TS_value->Name = L"TS_value";
+			this->TS_value->Size = System::Drawing::Size(14, 16);
+			this->TS_value->TabIndex = 22;
+			this->TS_value->Text = L"0";
+			// 
+			// ES_label
+			// 
+			this->ES_label->AutoSize = true;
+			this->ES_label->Location = System::Drawing::Point(437, 143);
+			this->ES_label->Name = L"ES_label";
+			this->ES_label->Size = System::Drawing::Size(141, 16);
+			this->ES_label->TabIndex = 21;
+			this->ES_label->Text = L"Speed at the end point";
+			// 
+			// MH_label
+			// 
+			this->MH_label->AutoSize = true;
+			this->MH_label->Location = System::Drawing::Point(437, 105);
+			this->MH_label->Name = L"MH_label";
+			this->MH_label->Size = System::Drawing::Size(75, 16);
+			this->MH_label->TabIndex = 20;
+			this->MH_label->Text = L"Max_height";
+			// 
+			// D_label
+			// 
+			this->D_label->AutoSize = true;
+			this->D_label->Location = System::Drawing::Point(437, 51);
+			this->D_label->Name = L"D_label";
+			this->D_label->Size = System::Drawing::Size(60, 16);
+			this->D_label->TabIndex = 19;
+			this->D_label->Text = L"Distance";
+			// 
+			// TS_label
+			// 
+			this->TS_label->AutoSize = true;
+			this->TS_label->Location = System::Drawing::Point(437, 17);
+			this->TS_label->MaximumSize = System::Drawing::Size(100, 30);
+			this->TS_label->Name = L"TS_label";
+			this->TS_label->Size = System::Drawing::Size(67, 16);
+			this->TS_label->TabIndex = 18;
+			this->TS_label->Text = L"Time step";
 			// 
 			// radioButton5
 			// 
@@ -316,27 +428,48 @@ namespace Flightmodel {
 			// 
 			// chart1
 			// 
-			chartArea2->AxisX->Maximum = 20;
-			chartArea2->AxisX->Minimum = 0;
-			chartArea2->AxisY->Maximum = 10;
-			chartArea2->AxisY->Minimum = 0;
-			chartArea2->Name = L"ChartArea1";
-			this->chart1->ChartAreas->Add(chartArea2);
+			chartArea1->AxisX->Maximum = 20;
+			chartArea1->AxisX->Minimum = 0;
+			chartArea1->AxisY->Maximum = 10;
+			chartArea1->AxisY->Minimum = 0;
+			chartArea1->Name = L"ChartArea1";
+			this->chart1->ChartAreas->Add(chartArea1);
 			this->chart1->Location = System::Drawing::Point(12, 244);
 			this->chart1->Name = L"chart1";
-			series3->BorderColor = System::Drawing::Color::Red;
+			series1->BorderColor = System::Drawing::Color::Red;
+			series1->BorderWidth = 3;
+			series1->ChartArea = L"ChartArea1";
+			series1->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::FastLine;
+			series1->Color = System::Drawing::Color::Red;
+			series1->IsValueShownAsLabel = true;
+			series1->Name = L"Series1";
+			series2->BorderWidth = 3;
+			series2->ChartArea = L"ChartArea1";
+			series2->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::FastLine;
+			series2->Color = System::Drawing::Color::Cyan;
+			series2->IsVisibleInLegend = false;
+			series2->Name = L"Series2";
 			series3->BorderWidth = 3;
 			series3->ChartArea = L"ChartArea1";
 			series3->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::FastLine;
-			series3->Color = System::Drawing::Color::Red;
-			series3->Name = L"Series1";
+			series3->Color = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+				static_cast<System::Int32>(static_cast<System::Byte>(128)));
+			series3->Name = L"Series3";
+			series4->BorderWidth = 3;
 			series4->ChartArea = L"ChartArea1";
 			series4->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::FastLine;
-			series4->Color = System::Drawing::Color::Cyan;
-			series4->IsVisibleInLegend = false;
-			series4->Name = L"Series2";
+			series4->Color = System::Drawing::Color::Lime;
+			series4->Name = L"Series4";
+			series5->BorderWidth = 3;
+			series5->ChartArea = L"ChartArea1";
+			series5->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::FastLine;
+			series5->Color = System::Drawing::Color::Fuchsia;
+			series5->Name = L"Series5";
+			this->chart1->Series->Add(series1);
+			this->chart1->Series->Add(series2);
 			this->chart1->Series->Add(series3);
 			this->chart1->Series->Add(series4);
+			this->chart1->Series->Add(series5);
 			this->chart1->Size = System::Drawing::Size(1517, 680);
 			this->chart1->TabIndex = 1;
 			this->chart1->Text = L"chart1";
@@ -346,6 +479,13 @@ namespace Flightmodel {
 			this->timer1->Interval = 1;
 			this->timer1->Tick += gcnew System::EventHandler(this, &MyForm::timer1_Tick);
 			// 
+			// panel2
+			// 
+			this->panel2->Location = System::Drawing::Point(12, 244);
+			this->panel2->Name = L"panel2";
+			this->panel2->Size = System::Drawing::Size(1517, 694);
+			this->panel2->TabIndex = 2;
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
@@ -353,6 +493,7 @@ namespace Flightmodel {
 			this->ClientSize = System::Drawing::Size(1520, 915);
 			this->Controls->Add(this->chart1);
 			this->Controls->Add(this->panel1);
+			this->Controls->Add(this->panel2);
 			this->Name = L"MyForm";
 			this->Text = L"MyForm";
 			this->WindowState = System::Windows::Forms::FormWindowState::Maximized;
@@ -370,9 +511,13 @@ namespace Flightmodel {
 #pragma endregion
 private: double a, v, S, m, vx, vy, cosa, sina, beta, k, x, y, root;
 private: double dt = 0;
+
+private: double distance, end_speed;
 	   const double rho = 1.29;
 	   const double C = 0.15;
 	   const double g = 9.81;
+	   int i=0;
+private: double y_max = 0;
 
 private: System::Void btStart_Click(System::Object^ sender, System::EventArgs^ e);
 private: System::Void radioButton1_CheckedChanged(System::Object^ sender, System::EventArgs^ e);
@@ -382,5 +527,7 @@ private: System::Void radioButton4_CheckedChanged(System::Object^ sender, System
 private: System::Void radioButton5_CheckedChanged(System::Object^ sender, System::EventArgs^ e);
 private: System::Void btClear_Click(System::Object^ sender, System::EventArgs^ e);
 private: System::Void timer1_Tick(System::Object^ sender, System::EventArgs^ e);
+
+
 };
 }

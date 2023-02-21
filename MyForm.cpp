@@ -13,11 +13,10 @@ void main(array<String^>^ args) {
 
     Flightmodel::MyForm form;
     Application::Run(% form);
-
-	
 }
 
 
+//Get dx
 
 System::Void Flightmodel::MyForm::radioButton1_CheckedChanged(System::Object^ sender, System::EventArgs^ e)
 {
@@ -49,21 +48,25 @@ System::Void Flightmodel::MyForm::radioButton5_CheckedChanged(System::Object^ se
 	return System::Void();
 }
 
+//Clear from past iterations
 System::Void Flightmodel::MyForm::btClear_Click(System::Object^ sender, System::EventArgs^ e)
 {
 	timer1->Stop();
-	this->chart1->Series[0]->Points->Clear();
+	for (int j = 0; j < i; j++)
+	{
+		this->chart1->Series[j]->Points->Clear();
+	}
+	TS_value->Text = "0";
+	D_value->Text = "0";
+	ES_value->Text = "0";
+	i = 0;
 	
 }
 
-
-
 System::Void Flightmodel::MyForm::btStart_Click(System::Object^ sender, System::EventArgs^ e)
 {
-
 	//Button Start
-	//Entering values
-	
+	//Enter values
 
 	a = (double)numAngle->Value;
 	v = (double)numSpeed->Value;
@@ -79,6 +82,8 @@ System::Void Flightmodel::MyForm::btStart_Click(System::Object^ sender, System::
 	vx = v * cosa;
 	vy = v * sina;
 
+	//Check if dx is not marked
+
 	if (dt == 0)
 	{
 		MessageBox::Show(this, "You did not set accuracy!", "Message", MessageBoxButtons::OK, MessageBoxIcon::Exclamation);
@@ -86,28 +91,50 @@ System::Void Flightmodel::MyForm::btStart_Click(System::Object^ sender, System::
 	}
 	else
 	{
-
-		chart1->Series[0]->Points->AddXY(x, y);
+		chart1->Series[i]->Points->AddXY(x, y);
 		timer1->Start();
 	}
-	
 }
 
 System::Void Flightmodel::MyForm::timer1_Tick(System::Object^ sender, System::EventArgs^ e)
 {
-	root = sqrt(vx * vx + vy * vy);
-	vx = vx - k * vx * root * dt;
-	vy = vy - (g + k * vy * root) * dt;
+	    //Calculations
 
-	x = x + vx * dt;
-	y = y + vy * dt;
+		root = sqrt(vx * vx + vy * vy);
+		vx = vx - k * vx * root * dt;
+		vy = vy - (g + k * vy * root) * dt;
 
-	chart1->Series[0]->Points->AddXY(x, y);
+		x = x + vx * dt;
+		y = y + vy * dt;
 
-	if (y < 0)
-	{
-		timer1->Stop();
-	}
+		//Find max height
+
+		if (y_max < y)
+		{
+			y_max = y;
+		}
+
+		//Draw a graph
+
+		chart1->Series[i]->Points->AddXY(x, y);
+
+		//Stop drowing a graph and measurement output
+
+		if (y < 0)
+		{
+			distance = x;
+			end_speed = root;
+			timer1->Stop();
+			i++;
+
+			TS_value->Text = dt.ToString();
+			D_value->Text = distance.ToString();
+			ES_value->Text = end_speed.ToString();
+			MH_value->Text = y_max.ToString();
+			exit;
+		}
 }
+
+
 
 
