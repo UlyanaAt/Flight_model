@@ -73,6 +73,7 @@ namespace Flightmodel {
 	private: System::Windows::Forms::Label^ MH_value;
 	private: System::Windows::Forms::Label^ D_value;
 	private: System::Windows::Forms::Label^ TS_value;
+	private: System::Windows::Forms::Button^ SC_button;
 
 
 
@@ -135,6 +136,7 @@ namespace Flightmodel {
 			this->chart1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Chart());
 			this->timer1 = (gcnew System::Windows::Forms::Timer(this->components));
 			this->panel2 = (gcnew System::Windows::Forms::Panel());
+			this->SC_button = (gcnew System::Windows::Forms::Button());
 			this->panel1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numWeight))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numSize))->BeginInit();
@@ -146,6 +148,7 @@ namespace Flightmodel {
 			// 
 			// panel1
 			// 
+			this->panel1->Controls->Add(this->SC_button);
 			this->panel1->Controls->Add(this->ES_value);
 			this->panel1->Controls->Add(this->MH_value);
 			this->panel1->Controls->Add(this->D_value);
@@ -321,7 +324,7 @@ namespace Flightmodel {
 			// 
 			// btClear
 			// 
-			this->btClear->Location = System::Drawing::Point(228, 105);
+			this->btClear->Location = System::Drawing::Point(228, 72);
 			this->btClear->Name = L"btClear";
 			this->btClear->Size = System::Drawing::Size(138, 54);
 			this->btClear->TabIndex = 11;
@@ -486,6 +489,16 @@ namespace Flightmodel {
 			this->panel2->Size = System::Drawing::Size(1517, 694);
 			this->panel2->TabIndex = 2;
 			// 
+			// SC_button
+			// 
+			this->SC_button->Location = System::Drawing::Point(228, 132);
+			this->SC_button->Name = L"SC_button";
+			this->SC_button->Size = System::Drawing::Size(138, 33);
+			this->SC_button->TabIndex = 26;
+			this->SC_button->Text = L"Stop and clear";
+			this->SC_button->UseVisualStyleBackColor = true;
+			this->SC_button->Click += gcnew System::EventHandler(this, &MyForm::SC_button_Click);
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
@@ -529,5 +542,6 @@ private: System::Void btClear_Click(System::Object^ sender, System::EventArgs^ e
 private: System::Void timer1_Tick(System::Object^ sender, System::EventArgs^ e);
 
 
+private: System::Void SC_button_Click(System::Object^ sender, System::EventArgs^ e);
 };
 }

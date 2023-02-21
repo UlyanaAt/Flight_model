@@ -59,8 +59,22 @@ System::Void Flightmodel::MyForm::btClear_Click(System::Object^ sender, System::
 	TS_value->Text = "0";
 	D_value->Text = "0";
 	ES_value->Text = "0";
+	MH_value->Text = "0";
 	i = 0;
-	
+}
+
+System::Void Flightmodel::MyForm::SC_button_Click(System::Object^ sender, System::EventArgs^ e)
+{
+	timer1->Stop();
+	for (int j = 0; j <= i; j++)
+	{
+		this->chart1->Series[j]->Points->Clear();
+	}
+	TS_value->Text = "0";
+	D_value->Text = "0";
+	ES_value->Text = "0";
+	MH_value->Text = "0";
+	i = 0;
 }
 
 System::Void Flightmodel::MyForm::btStart_Click(System::Object^ sender, System::EventArgs^ e)
@@ -118,7 +132,7 @@ System::Void Flightmodel::MyForm::timer1_Tick(System::Object^ sender, System::Ev
 
 		chart1->Series[i]->Points->AddXY(x, y);
 
-		//Stop drowing a graph and measurement output
+		//Stop drawing a graph and measurement output
 
 		if (y < 0)
 		{
@@ -134,6 +148,8 @@ System::Void Flightmodel::MyForm::timer1_Tick(System::Object^ sender, System::Ev
 			exit;
 		}
 }
+
+
 
 
 
